@@ -1,10 +1,15 @@
 ﻿using System.Threading.Tasks;
+using DotnetBleServer.Core;
+using DotnetBleServer.Gatt.BlueZModel;
 
 namespace DotnetBleServer.Gatt
 {
-    public interface ICharacteristicSource
+    public abstract class CharacteristicSource
     {
-        Task WriteValueAsync(byte[] value);
-        Task<byte[]> ReadValueAsync();
+        public PropertiesBase<GattCharacteristic1Properties> Properties;
+        public abstract Task WriteValueAsync(byte[] value);
+        public abstract Task<byte[]> ReadValueAsync();
+        public abstract Task StartNotifyAsync();
+        public abstract Task StopNotifyAsync();
     }
 }

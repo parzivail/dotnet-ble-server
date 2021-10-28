@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DotnetBleServer.Core;
 using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt.BlueZModel
 {
-    internal class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
+    public class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
         IObjectManagerProperties
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
 
-        private readonly ICharacteristicSource _CharacteristicSource;
-
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristicSource characteristicSource) : base(objectPath, properties)
+        private readonly CharacteristicSource _CharacteristicSource;
+        
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, CharacteristicSource characteristicSource) : base(objectPath, properties)
         {
             _CharacteristicSource = characteristicSource;
+            
+            _CharacteristicSource.Properties = PropertiesBaseInstance;
         }
 
         public Task<byte[]> ReadValueAsync(IDictionary<string, object> options)
@@ -31,13 +34,21 @@ namespace DotnetBleServer.Gatt.BlueZModel
 
         public Task StartNotifyAsync()
         {
-            throw new NotImplementedException();
+            if (Properties.Notifying) {
+                Console.WriteLine("Already notifying");
+                return Task.CompletedTask;
+            }
+
+            return _CharacteristicSource.StartNotifyAsync();
+
         }
 
         public Task StopNotifyAsync()
         {
-            throw new NotImplementedException();
+            return _CharacteristicSource.StopNotifyAsync();
         }
+
+
 
         public IDictionary<string, IDictionary<string, object>> GetProperties()
         {

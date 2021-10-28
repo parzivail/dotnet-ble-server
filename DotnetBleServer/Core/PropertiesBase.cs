@@ -7,10 +7,13 @@ namespace DotnetBleServer.Core
 {
     public abstract class PropertiesBase<TV>
     {
+        protected readonly PropertiesBase<TV> PropertiesBaseInstance;
+
         protected readonly TV Properties;
 
         protected PropertiesBase(ObjectPath objectPath, TV properties)
         {
+            PropertiesBaseInstance = this;
             ObjectPath = objectPath;
             Properties = properties;
         }
@@ -33,7 +36,9 @@ namespace DotnetBleServer.Core
 
         public Task SetAsync(string prop, object val)
         {
+            OnPropertiesChanged?.Invoke(PropertyChanges.ForProperty(prop, val));
             return Properties.SetProperty(prop, val);
+            
         }
 
         public Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler)
