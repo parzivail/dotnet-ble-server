@@ -17,13 +17,19 @@ namespace DotnetBleServer.Advertisements
 
         public async Task RegisterAdvertisement(Advertisement advertisement)
         {
-            await _Context.Connection.RegisterObjectAsync(advertisement);
-            Console.WriteLine($"advertisement object {advertisement.ObjectPath} created");
+            try
+            {
+                await _Context.Connection.RegisterObjectAsync(advertisement);
+                Console.WriteLine($"advertisement object {advertisement.ObjectPath} created");
 
-            await GetAdvertisingManager().RegisterAdvertisementAsync(((IDBusObject) advertisement).ObjectPath,
-                new Dictionary<string, object>());
+                await GetAdvertisingManager().RegisterAdvertisementAsync(((IDBusObject)advertisement).ObjectPath,
+                    new Dictionary<string, object>());
 
-            Console.WriteLine($"advertisement {advertisement.ObjectPath} registered in BlueZ advertising manager");
+                Console.WriteLine($"advertisement {advertisement.ObjectPath} registered in BlueZ advertising manager");
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         private ILEAdvertisingManager1 GetAdvertisingManager()

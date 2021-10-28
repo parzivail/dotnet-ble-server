@@ -17,7 +17,7 @@ namespace DotnetBleServer.Gatt.BlueZModel
     }
 
     [Dictionary]
-    internal class GattService1Properties
+    public class GattService1Properties
     {
         private string _UUID = default (string);
         public string UUID

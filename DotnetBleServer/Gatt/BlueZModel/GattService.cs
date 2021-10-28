@@ -29,7 +29,7 @@ namespace DotnetBleServer.Gatt.BlueZModel
             };
         }
 
-        public GattCharacteristic AddCharacteristic(GattCharacteristic1Properties characteristic, ICharacteristicSource characteristicSource)
+        public GattCharacteristic AddCharacteristic(GattCharacteristic1Properties characteristic, CharacteristicSource characteristicSource)
         {
             characteristic.Service = ObjectPath;
             var gattCharacteristic = new GattCharacteristic(NextCharacteristicPath(), characteristic, characteristicSource);

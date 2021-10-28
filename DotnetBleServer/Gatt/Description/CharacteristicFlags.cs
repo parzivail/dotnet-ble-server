@@ -7,6 +7,8 @@ namespace DotnetBleServer.Gatt.Description
     {
         Read = 1,
         Write = 2,
-        WritableAuxiliaries = 4
+        WritableAuxiliaries = 4,
+        Notify = 8,
+        Indicate = 16
     }
 }
