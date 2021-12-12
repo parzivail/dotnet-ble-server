@@ -9,6 +9,7 @@ namespace DotnetBleServer.Gatt.Description
         Write = 2,
         WritableAuxiliaries = 4,
         Notify = 8,
-        Indicate = 16
+        Indicate = 16,
+        WriteWithoutResponse = 32,
     }
 }

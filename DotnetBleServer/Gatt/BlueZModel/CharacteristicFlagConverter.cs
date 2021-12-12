@@ -14,8 +14,8 @@ namespace DotnetBleServer.Gatt.BlueZModel
                 {CharacteristicFlags.Write, "write"},
                 {CharacteristicFlags.WritableAuxiliaries, "writable-auxiliaries"},
                 {CharacteristicFlags.Notify, "notify"},
-                {CharacteristicFlags.Indicate, "indicate"}
-
+                {CharacteristicFlags.Indicate, "indicate"},
+                {CharacteristicFlags.WriteWithoutResponse, "write-without-response"},
             };
 
         public static string[] ConvertFlags(CharacteristicFlags characteristicFlags)

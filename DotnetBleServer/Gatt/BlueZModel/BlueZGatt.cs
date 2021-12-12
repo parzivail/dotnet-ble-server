@@ -73,6 +73,8 @@ namespace DotnetBleServer.Gatt.BlueZModel
         Task<GattCharacteristic1Properties> GetAllAsync();
         Task SetAsync(string prop, object val);
         Task<IDisposable> WatchPropertiesAsync(Action<PropertyChanges> handler);
+
+        Task ConfirmAsync();
     }
 
     [Dictionary]
