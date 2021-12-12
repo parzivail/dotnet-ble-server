@@ -12,10 +12,9 @@ namespace DotnetBleServer.Gatt.BlueZModel
         IObjectManagerProperties
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
-
-        private readonly CharacteristicSource _CharacteristicSource;
+        private readonly ICharacteristicSource _CharacteristicSource;
         
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, CharacteristicSource characteristicSource) : base(objectPath, properties)
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristicSource characteristicSource) : base(objectPath, properties)
         {
             _CharacteristicSource = characteristicSource;
             
@@ -29,7 +28,9 @@ namespace DotnetBleServer.Gatt.BlueZModel
 
         public Task WriteValueAsync(byte[] value, IDictionary<string, object> options)
         {
-            return _CharacteristicSource.WriteValueAsync(value);
+            bool response = options.ContainsKey("request");
+
+            return _CharacteristicSource.WriteValueAsync(value, response);
         }
 
         public Task StartNotifyAsync()
@@ -48,7 +49,10 @@ namespace DotnetBleServer.Gatt.BlueZModel
             return _CharacteristicSource.StopNotifyAsync();
         }
 
-
+        public Task ConfirmAsync()
+        {
+            return _CharacteristicSource.ConfirmAsync();
+        }
 
         public IDictionary<string, IDictionary<string, object>> GetProperties()
         {
