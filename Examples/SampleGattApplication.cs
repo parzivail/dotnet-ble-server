@@ -21,7 +21,8 @@ namespace Examples
             {
                 CharacteristicSource = new ExampleCharacteristicSource(),
                 UUID = "12345678-1234-5678-1234-56789abcdef1",
-                Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries
+                // Without the notifications flag, the server won't send or even activate the Start/Stop notification functions
+                Flags = CharacteristicFlags.Read | CharacteristicFlags.Write | CharacteristicFlags.WritableAuxiliaries | CharacteristicFlags.Notify
             };
             var gattDescriptorDescription = new GattDescriptorDescription
             {
