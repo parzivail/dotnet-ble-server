@@ -8,7 +8,7 @@ namespace DotnetBleServer.Gatt.Description
 
         public IEnumerable<GattDescriptorDescription> Descriptors => _Descriptors;
 
-        public CharacteristicSource CharacteristicSource { get; set; }
+        public ICharacteristicSource CharacteristicSource { get; set; }
 
         public string UUID { get; set; }
         public CharacteristicFlags Flags { get; set; }
