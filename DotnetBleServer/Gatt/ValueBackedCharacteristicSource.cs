@@ -2,12 +2,11 @@ namespace DotnetBleServer.Gatt;
 
 public class ValueBackedCharacteristicSource : ICharacteristicSource
 {
-    public delegate void ValueSetEvent(byte[] value, bool response, bool didNofify);
-
-    public event ValueSetEvent ValueSet;
+    public delegate void ValueSetEvent(byte[] value, bool response, bool didNotify);
 
     public delegate void CallbackEvent();
 
+    public event ValueSetEvent ValueSet;
     public event CallbackEvent ClientSubscribed;
     public event CallbackEvent ClientUnsubscribed;
     public event CallbackEvent Confirmed;
