@@ -10,28 +10,20 @@ namespace DotnetBleServer.Gatt
 {
     public class GattApplicationManager
     {
-        private readonly ServerContext _ServerContext;
+        private readonly ServerContext _context;
 
-        public GattApplicationManager(ServerContext serverContext)
+        public GattApplicationManager(ServerContext context)
         {
-            _ServerContext = serverContext;
+            _context = context;
         }
 
-        public async Task RegisterGattApplication(IEnumerable<GattServiceDescription> gattServiceDescriptions)
+        public async Task RegisterGattApplication(ObjectPath path, IEnumerable<GattServiceDescription> gattServiceDescriptions)
         {
-            var applicationObjectPath = GenerateApplicationObjectPath();
-            await BuildApplicationTree(applicationObjectPath, gattServiceDescriptions);
-            await RegisterApplicationInBluez(applicationObjectPath);
+            await BuildApplicationTree(path, gattServiceDescriptions);
+            await RegisterApplicationInBluez(path);
         }
 
-        private static string GenerateApplicationObjectPath()
-        {
-            var appId = Guid.NewGuid().ToString().Substring(0, 8);
-            var applicationObjectPath = $"/{appId}";
-            return applicationObjectPath;
-        }
-
-        private async Task BuildApplicationTree(string applicationObjectPath, IEnumerable<GattServiceDescription> gattServiceDescriptions)
+        private async Task BuildApplicationTree(ObjectPath applicationObjectPath, IEnumerable<GattServiceDescription> gattServiceDescriptions)
         {
             var application = await BuildGattApplication(applicationObjectPath);
 
@@ -51,16 +43,16 @@ namespace DotnetBleServer.Gatt
             }
         }
 
-        private async Task RegisterApplicationInBluez(string applicationObjectPath)
+        private async Task RegisterApplicationInBluez(ObjectPath applicationObjectPath)
         {
-            var gattManager = _ServerContext.Connection.CreateProxy<IGattManager1>("org.bluez", "/org/bluez/hci0");
-            await gattManager.RegisterApplicationAsync(new ObjectPath(applicationObjectPath), new Dictionary<string, object>());
+            var gattManager = _context.Connection.CreateProxy<IGattManager1>("org.bluez", _context.Adapter.ObjectPath);
+            await gattManager.RegisterApplicationAsync(applicationObjectPath, new Dictionary<string, object>());
         }
 
-        private async Task<GattApplication> BuildGattApplication(string applicationObjectPath)
+        private async Task<GattApplication> BuildGattApplication(ObjectPath applicationObjectPath)
         {
             var application = new GattApplication(applicationObjectPath);
-            await _ServerContext.Connection.RegisterObjectAsync(application);
+            await _context.Connection.RegisterObjectAsync(application);
             return application;
         }
 
@@ -69,7 +61,7 @@ namespace DotnetBleServer.Gatt
         {
             var gattService1Properties = GattPropertiesFactory.CreateGattService(serviceDescription);
             var gattService = application.AddService(gattService1Properties);
-            await _ServerContext.Connection.RegisterObjectAsync(gattService);
+            await _context.Connection.RegisterObjectAsync(gattService);
             return gattService;
         }
 
@@ -77,7 +69,7 @@ namespace DotnetBleServer.Gatt
         {
             var gattCharacteristic1Properties = GattPropertiesFactory.CreateGattCharacteristic(characteristic);
             var gattCharacteristic = gattService.AddCharacteristic(gattCharacteristic1Properties, characteristic.CharacteristicSource);
-            await _ServerContext.Connection.RegisterObjectAsync(gattCharacteristic);
+            await _context.Connection.RegisterObjectAsync(gattCharacteristic);
             return gattCharacteristic;
         }
 
@@ -86,7 +78,7 @@ namespace DotnetBleServer.Gatt
         {
             var gattDescriptor1Properties = GattPropertiesFactory.CreateGattDescriptor(descriptor);
             var gattDescriptor = gattCharacteristic.AddDescriptor(gattDescriptor1Properties);
-            await _ServerContext.Connection.RegisterObjectAsync(gattDescriptor);
+            await _context.Connection.RegisterObjectAsync(gattDescriptor);
         }
     }
 }

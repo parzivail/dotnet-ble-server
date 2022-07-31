@@ -23,8 +23,8 @@ namespace DotnetBleServer.Advertisements
             set => _ServiceUUIDs = value;
         }
 
-        private IDictionary<string, object> _ManufacturerData;
-        public IDictionary<string, object> ManufacturerData
+        private IDictionary<ushort, object> _ManufacturerData;
+        public IDictionary<ushort, object> ManufacturerData
         {
             get => _ManufacturerData;
             set => _ManufacturerData = value;

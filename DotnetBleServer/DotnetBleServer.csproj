@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ApplicationIcon />
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
 
     <PackageId>DotnetBleServer</PackageId>
     <Version>0.1.0-snapshot</Version>
@@ -19,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tmds.DBus" Version="0.8.0" />
+    <ProjectReference Include="..\DotNet-BlueZ\DotNet-BlueZ.csproj" />
   </ItemGroup>
 
 </Project>
