@@ -34,7 +34,7 @@ namespace DotnetBleServer.Advertisements
         public async Task CreateAdvertisement(ObjectPath path, AdvertisementProperties advertisementProperties)
         {
             var advertisement = new Advertisement(path, advertisementProperties);
-            await RegisterAdvertisement(advertisement, _context.Adapter.ObjectPath);
+            await RegisterAdvertisement(advertisement, _context.Adapter);
         }
     }
 }

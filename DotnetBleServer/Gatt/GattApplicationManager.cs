@@ -45,7 +45,7 @@ namespace DotnetBleServer.Gatt
 
         private async Task RegisterApplicationInBluez(ObjectPath applicationObjectPath)
         {
-            var gattManager = _context.Connection.CreateProxy<IGattManager1>("org.bluez", _context.Adapter.ObjectPath);
+            var gattManager = _context.Connection.CreateProxy<IGattManager1>("org.bluez", _context.Adapter);
             await gattManager.RegisterApplicationAsync(applicationObjectPath, new Dictionary<string, object>());
         }
 

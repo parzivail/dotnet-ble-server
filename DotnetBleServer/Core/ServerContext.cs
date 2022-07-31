@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using HashtagChris.DotNetBlueZ;
 using Tmds.DBus;
 
 namespace DotnetBleServer.Core
 {
     public class ServerContext : IDisposable
     {
-        public Adapter Adapter { get; }
+        public ObjectPath Adapter { get; }
 
-        public ServerContext(Adapter adapter)
+        public ServerContext(ObjectPath adapter)
         {
             Adapter = adapter;
             Connection = new Connection(Address.System);
