@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-using DotnetBleServer.Core;
+﻿using DotnetBleServer.Core;
 using DotnetBleServer.Gatt.BlueZModel;
 
 namespace DotnetBleServer.Gatt
 {
-
     public abstract class ICharacteristicSource
     {
         public PropertiesBase<GattCharacteristic1Properties> Properties;
