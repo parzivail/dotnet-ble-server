@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotnetBleServer.Core;
+﻿using DotnetBleServer.Core;
+
 using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt.BlueZModel
 {
-    public class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1,
-        IObjectManagerProperties
+    public class GattCharacteristic : PropertiesBase<GattCharacteristic1Properties>, IGattCharacteristic1, IObjectManagerProperties
     {
         public IList<GattDescriptor> Descriptors { get; } = new List<GattDescriptor>();
         private readonly ICharacteristicSource _CharacteristicSource;
-        
-        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristicSource characteristicSource) : base(objectPath, properties)
+
+        public GattCharacteristic(ObjectPath objectPath, GattCharacteristic1Properties properties, ICharacteristicSource characteristicSource)
+            : base(objectPath, properties)
         {
             _CharacteristicSource = characteristicSource;
-            
+
             _CharacteristicSource.Properties = PropertiesBaseInstance;
         }
 
@@ -35,13 +31,12 @@ namespace DotnetBleServer.Gatt.BlueZModel
 
         public Task StartNotifyAsync()
         {
-            if (Properties.Notifying) {
-                Console.WriteLine("Already notifying");
+            if (Properties.Notifying)
+            {
                 return Task.CompletedTask;
             }
 
             return _CharacteristicSource.StartNotifyAsync();
-
         }
 
         public Task StopNotifyAsync()
@@ -61,10 +56,10 @@ namespace DotnetBleServer.Gatt.BlueZModel
                 {
                     "org.bluez.GattCharacteristic1", new Dictionary<string, object>
                     {
-                        {"Service", Properties.Service},
-                        {"UUID", Properties.UUID},
-                        {"Flags", Properties.Flags},
-                        {"Descriptors", Descriptors.Select(d => d.ObjectPath).ToArray()}
+                        { "Service", Properties.Service },
+                        { "UUID", Properties.UUID },
+                        { "Flags", Properties.Flags },
+                        { "Descriptors", Descriptors.Select(d => d.ObjectPath).ToArray() }
                     }
                 }
             };

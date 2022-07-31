@@ -5,16 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cf30bb7-7c2a-4831-9b79-f678c50edafa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DotnetBleServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotnetBleServer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotnetBleServer.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/DotnetBleServer.sln.DotSettings" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotnetBleServer/Advertisements/AdvertisingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotnetBleServer/Advertisements/AdvertisingManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotnetBleServer/Core/ServerContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotnetBleServer/Core/ServerContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotnetBleServer/DotnetBleServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DotnetBleServer/DotnetBleServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DotnetBleServer/Gatt/BlueZModel/GattCharacteristic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotnetBleServer/Gatt/BlueZModel/GattCharacteristic.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotnetBleServer/Gatt/GattApplicationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotnetBleServer/Gatt/GattApplicationManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="Notifications" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Notifications" />
+      </map>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Advertisements/AdvertisingManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -23,12 +35,16 @@
     <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Advertisements/AdvertisingManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Advertisements/AdvertisingManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Advertisements/AdvertisingManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Advertisements/AdvertisingManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Advertisements/AdvertisingManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DotnetBleServer/Core/ServerContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/cnewman/Repositories/dotnet-ble-server/DotnetBleServer/Core/ServerContext.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Cir7uKkK1sXdq34oEdZt5xQ4KP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -79,7 +95,19 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

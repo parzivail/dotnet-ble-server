@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DotnetBleServer.Core;
+﻿using DotnetBleServer.Core;
 using DotnetBleServer.Gatt.BlueZModel;
 using DotnetBleServer.Gatt.Description;
+
 using Tmds.DBus;
 
 namespace DotnetBleServer.Gatt
@@ -36,9 +34,7 @@ namespace DotnetBleServer.Gatt
                     var characteristic = await AddNewCharacteristic(service, characteristicDescription);
 
                     foreach (var descriptorDescription in characteristicDescription.Descriptors)
-                    {
                         await AddNewDescriptor(characteristic, descriptorDescription);
-                    }
                 }
             }
         }
@@ -56,8 +52,7 @@ namespace DotnetBleServer.Gatt
             return application;
         }
 
-        private async Task<GattService> AddNewService(GattApplication application,
-            GattServiceDescription serviceDescription)
+        private async Task<GattService> AddNewService(GattApplication application, GattServiceDescription serviceDescription)
         {
             var gattService1Properties = GattPropertiesFactory.CreateGattService(serviceDescription);
             var gattService = application.AddService(gattService1Properties);
@@ -73,8 +68,7 @@ namespace DotnetBleServer.Gatt
             return gattCharacteristic;
         }
 
-        private async Task AddNewDescriptor(GattCharacteristic gattCharacteristic,
-            GattDescriptorDescription descriptor)
+        private async Task AddNewDescriptor(GattCharacteristic gattCharacteristic, GattDescriptorDescription descriptor)
         {
             var gattDescriptor1Properties = GattPropertiesFactory.CreateGattDescriptor(descriptor);
             var gattDescriptor = gattCharacteristic.AddDescriptor(gattDescriptor1Properties);

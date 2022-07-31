@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Tmds.DBus;
+﻿using Tmds.DBus;
 
 namespace DotnetBleServer.Core
 {

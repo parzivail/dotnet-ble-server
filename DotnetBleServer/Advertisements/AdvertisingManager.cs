@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DotnetBleServer.Core;
+﻿using DotnetBleServer.Core;
+
 using Tmds.DBus;
 
 namespace DotnetBleServer.Advertisements
@@ -18,12 +16,8 @@ namespace DotnetBleServer.Advertisements
         public async Task RegisterAdvertisement(Advertisement advertisement, ObjectPath device)
         {
             await _context.Connection.RegisterObjectAsync(advertisement);
-            Console.WriteLine($"advertisement object {advertisement.ObjectPath} created");
 
-            await GetAdvertisingManager(device).RegisterAdvertisementAsync(((IDBusObject) advertisement).ObjectPath,
-                new Dictionary<string, object>());
-
-            Console.WriteLine($"advertisement {advertisement.ObjectPath} registered in BlueZ advertising manager");
+            await GetAdvertisingManager(device).RegisterAdvertisementAsync(((IDBusObject)advertisement).ObjectPath, new Dictionary<string, object>());
         }
 
         private ILEAdvertisingManager1 GetAdvertisingManager(ObjectPath device)
