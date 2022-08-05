@@ -16,8 +16,8 @@ namespace DotnetBleServer.Advertisements
         public async Task RegisterAdvertisement(Advertisement advertisement, ObjectPath device)
         {
             await _context.Connection.RegisterObjectAsync(advertisement);
-
-            await GetAdvertisingManager(device).RegisterAdvertisementAsync(((IDBusObject)advertisement).ObjectPath, new Dictionary<string, object>());
+            var manager = GetAdvertisingManager(device);
+            await manager.RegisterAdvertisementAsync(advertisement.ObjectPath, new Dictionary<string, object>());
         }
 
         private ILEAdvertisingManager1 GetAdvertisingManager(ObjectPath device)

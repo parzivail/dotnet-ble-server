@@ -6,10 +6,10 @@ public class ValueBackedCharacteristicSource : ICharacteristicSource
 
     public delegate void CallbackEvent();
 
-    public event ValueSetEvent ValueSet;
-    public event CallbackEvent ClientSubscribed;
-    public event CallbackEvent ClientUnsubscribed;
-    public event CallbackEvent Confirmed;
+    public event ValueSetEvent? ValueSet;
+    public event CallbackEvent? ClientSubscribed;
+    public event CallbackEvent? ClientUnsubscribed;
+    public event CallbackEvent? Confirmed;
 
     public async Task SetData(byte[] value, bool response, bool notify = true)
     {
@@ -21,7 +21,7 @@ public class ValueBackedCharacteristicSource : ICharacteristicSource
             props.Value = value;
         }
 
-        ValueSet.Invoke(value, response, notify);
+        ValueSet?.Invoke(value, response, notify);
     }
 
     public override async Task WriteValueAsync(byte[] value, bool response)
@@ -38,18 +38,18 @@ public class ValueBackedCharacteristicSource : ICharacteristicSource
     {
         var props = await Properties.GetAllAsync();
         props.Notifying = true;
-        ClientSubscribed.Invoke();
+        ClientSubscribed?.Invoke();
     }
 
     public override async Task StopNotifyAsync()
     {
         var props = await Properties.GetAllAsync();
         props.Notifying = false;
-        ClientUnsubscribed.Invoke();
+        ClientUnsubscribed?.Invoke();
     }
 
     public override async Task ConfirmAsync()
     {
-        Confirmed.Invoke();
+        Confirmed?.Invoke();
     }
 }
